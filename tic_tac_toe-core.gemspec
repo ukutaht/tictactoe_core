@@ -9,7 +9,6 @@ Gem::Specification.new do |spec|
   spec.authors       = ["heruku"]
   spec.email         = ["uku.taht@gmail.com"]
   spec.summary       = %q{Core logic for a tic tac toe game}
-  spec.homepage      = ""
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

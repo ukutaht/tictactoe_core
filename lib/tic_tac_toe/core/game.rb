@@ -1,6 +1,6 @@
-require_relative 'board'
-require_relative 'computer_player'
-require_relative 'human_player'
+require 'tic_tac_toe/core/board'
+require 'tic_tac_toe/core/computer_player'
+require 'tic_tac_toe/core/human_player'
 
 module TicTacToe
   module Core

@@ -47,10 +47,6 @@ describe TicTacToe::Core::Game do
     expect(game.board_size_set?).to eq false
   end
 
-  it 'returns a truthy value if valid board size was set' do
-    expect(game.set_board_size(4)).to be_truthy
-  end
-
   it 'does not set the size to an invalid board size' do
     game.set_board_size(5)
 

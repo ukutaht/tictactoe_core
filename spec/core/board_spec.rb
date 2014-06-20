@@ -143,9 +143,16 @@ describe TicTacToe::Core::Board do
     end
 
     it 'sets size attribute' do
-      board.set_size 5
+      board.set_size(5)
 
       expect(board.size).to eq 5
+    end
+
+    it 'clears valid moves when size is set' do
+      board.valid_moves
+      board.set_size(5)
+
+      expect(board.valid_moves.length).to eq 25
     end
   end
 end

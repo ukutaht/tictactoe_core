@@ -20,8 +20,8 @@ module TicTacToe
 
       def set_size(size)
         @size = size
-        @board_string = EMPTY * (size**2)
         @valid_moves = nil
+        @board_string = EMPTY * (size**2)
       end
 
       def game_over?

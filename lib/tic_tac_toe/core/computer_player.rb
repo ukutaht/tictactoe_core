@@ -15,8 +15,8 @@ module TicTacToe
         false
       end
 
-      def can_make_move?(_, _)
-        true
+      def can_make_move?(board, _)
+        !board.game_over?
       end
 
       def make_move(board, _index)

@@ -14,6 +14,13 @@ module TicTacToe
         @players = []
       end
 
+      def self.from_hash(opts)
+        game = self.new
+        game.send(opts['game_type'])
+        game.set_board_size(opts['board_size'].to_i)
+        game
+      end
+
       def play_next_move(board_index=nil)
         if current_player.can_make_move?(board, board_index)
           current_player.make_move(board, board_index)
@@ -78,9 +85,9 @@ module TicTacToe
         board.valid_move?(index)
       end
 
-     def human_player(mark)
+      def human_player(mark)
         TicTacToe::Core::HumanPlayer.new(mark)
-     end
+      end
 
       def computer_player(mark)
         TicTacToe::Core::ComputerPlayer.new(mark)

@@ -1,5 +1,4 @@
-require 'tic_tac_toe/core/board'
-require 'tic_tac_toe/core/computer_player'
+require 'tic_tac_toe/core/game'
 
 describe TicTacToe::Core::ComputerPlayer do
    let(:computer) {TicTacToe::Core::ComputerPlayer.new("X")}
@@ -29,4 +28,13 @@ describe TicTacToe::Core::ComputerPlayer do
 
      expect(good_moves).to include(move)
   end
+
+   it 'two draw ' do
+     game = TicTacToe::Core::Game.new
+     game.computer_vs_computer
+     until game.over?
+       game.play_next_move
+     end
+     expect(game.winner).to eq nil
+   end
 end

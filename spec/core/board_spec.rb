@@ -41,6 +41,14 @@ describe TicTacToe::Core::Board do
      end
   end
 
+  it 'can tell its winning row' do
+    expect(horizontal_win_board.winning_row).to eq [0, 1, 2]
+  end
+
+  it 'winning row is nil if no winner' do
+    expect(draw_board.winning_row).to eq nil
+  end
+
   describe '#over?' do
     context 'game not over' do
       it 'is false' do
@@ -154,5 +162,9 @@ describe TicTacToe::Core::Board do
 
       expect(board.valid_moves.length).to eq 25
     end
+  end
+
+  it 'converts to rows' do
+    expect(mid_game_board.rows.length).to eq 3
   end
 end

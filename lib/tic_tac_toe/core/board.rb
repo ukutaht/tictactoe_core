@@ -8,10 +8,11 @@ module TicTacToe
 
       def initialize(board_string=STARTING_BOARD)
         @board_string = board_string.dup
+        @size = Math.sqrt(board_string.length)
       end
 
-      def valid_move?(i)
-        valid_moves.include?(i) && !game_over?
+      def valid_move?(index)
+        valid_moves.include?(index) && !game_over?
       end
 
       def valid_moves
@@ -40,6 +41,12 @@ module TicTacToe
         winner
       end
 
+      def winning_row
+        winning_combinations.find do | triplet|
+          winning_row?(triplet)
+        end
+      end
+
       def draw?
         !winner && valid_moves.empty?
       end
@@ -62,6 +69,10 @@ module TicTacToe
         board_string
       end
 
+      def rows
+        board_string.chars.each_slice(size).to_a
+      end
+
       def to_sym
         board_string.to_sym
       end
@@ -77,15 +88,13 @@ module TicTacToe
       private
 
       def calculate_winning_combinations
-        side_length = Math.sqrt(board_string.size)
+        indices_ary = (0...board_string.size).each_slice(size).to_a
 
-        indices_ary = (0...board_string.size).each_slice(side_length).to_a
-
-        [indices_ary, indices_ary.transpose, [diagonal(indices_ary, side_length), diagonal(indices_ary.transpose.map(&:reverse), side_length)]].flatten(1)
+        [indices_ary, indices_ary.transpose, [diagonal(indices_ary), diagonal(indices_ary.transpose.map(&:reverse))]].flatten(1)
       end
 
-      def diagonal(ary, side_length)
-        0.upto(side_length - 1).map do |i|
+      def diagonal(ary)
+        0.upto(size - 1).map do |i|
           ary[i][i]
         end
       end
